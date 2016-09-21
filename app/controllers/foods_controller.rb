@@ -6,7 +6,7 @@ class FoodsController < ApplicationController
 
   def create
     @food = Food.new(food_params)
-
+    @food.user_id = current_user.id
     if @food.save
       render json: @food
     else
