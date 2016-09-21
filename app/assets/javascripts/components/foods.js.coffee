@@ -6,8 +6,7 @@
     foods: []
 
   addFood: (food) ->
-    foods = @state.foods.slice()
-    foods.push food
+    foods = React.addons.update(@state.foods, { $push: [food] })
     @setState foods: foods
 
   caloriesTotal: ->
@@ -16,10 +15,14 @@
       prev + curr.calories
     ), 0
 
+  updateFood: (food, data) ->
+    index = @state.foods.indexOf food
+    foods = React.addons.update(@state.foods, { $splice: [[index, 1, data]] })
+    @replaceState foods: foods
+
   deleteFood: (food) ->
-    foods = @state.foods.slice()
-    index = foods.indexOf food
-    foods.splice index, 1
+    index = @state.foods.indexOf food
+    foods = React.addons.update(@state.foods, { $splice: [[index, 1]] })
     @replaceState foods: foods
 
   render: ->
@@ -43,4 +46,4 @@
             React.DOM.th null, "Actions"
         React.DOM.tbody null,
           for food in @state.foods
-            React.createElement Food, key: food.id, food: food, handleDeleteFood: @deleteFood
+            React.createElement Food, key: food.id, food: food, handleDeleteFood: @deleteFood, handleEditFood: @updateFood
