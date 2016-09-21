@@ -1,2 +1,23 @@
 @import 'bootstrap-sprockets';
 @import 'bootstrap';
+
+body {
+  margin-top: 50px;
+}
+
+.splash-hero {
+  background-image: url('https://hd.unsplash.com/photo-1430163393927-3dab9af7ea38');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 400px;
+  text-align: right;
+  h1 {
+    padding-right: 50px;
+    padding-top: 30px;
+  }
+  .sign-up-button {
+    width: 200px;
+    margin-right: 12%;
+  }
+}
