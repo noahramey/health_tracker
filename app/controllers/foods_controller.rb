@@ -13,6 +13,12 @@ class FoodsController < ApplicationController
     end
   end
 
+  def destroy
+    @food = Food.find(params[:id])
+    @food.destroy
+    head :no_content
+  end
+
   private
 
   def food_params
