@@ -1,0 +1,2 @@
+@dateFormat = (date) ->
+  date.toString()
