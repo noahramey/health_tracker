@@ -1,6 +1,2 @@
 .container
-  .row
-    .col-sm-6
-      = react_component 'Foods', { data: @foods }
-    .col-sm-6
-      = react_component 'Exercises', { data: @exercises }
+  = react_component 'Main', { foods: @foods, exercises: @exercises }

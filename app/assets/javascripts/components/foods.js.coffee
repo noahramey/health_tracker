@@ -1,28 +1,25 @@
 @Foods = React.createClass
   getInitialState: ->
-    foods: @props.data
+    foods: @props.foods
 
   getDefaultProps: ->
     foods: []
 
   addFood: (food) ->
     foods = React.addons.update(@state.foods, { $push: [food] })
+    @props.handleFoodRefresh foods
     @setState foods: foods
-
-  caloriesTotal: ->
-    foods = @state.foods
-    foods.reduce ((prev, curr) ->
-      prev + curr.calories
-    ), 0
 
   updateFood: (food, data) ->
     index = @state.foods.indexOf food
     foods = React.addons.update(@state.foods, { $splice: [[index, 1, data]] })
+    @props.handleFoodRefresh foods
     @replaceState foods: foods
 
   deleteFood: (food) ->
     index = @state.foods.indexOf food
     foods = React.addons.update(@state.foods, { $splice: [[index, 1]] })
+    @props.handleFoodRefresh foods
     @replaceState foods: foods
 
   render: ->
@@ -31,16 +28,12 @@
       React.DOM.h2
         className: 'name'
         'Foods'
-      React.DOM.div
-        className: 'row'
-        React.createElement TotalCalories, type: 'info', calories: @caloriesTotal(), text: 'Gross Caloric Intake'
       React.createElement FoodForm, handleNewFood: @addFood
       React.DOM.hr null
       React.DOM.table
         className: "table table-bordered"
         React.DOM.thead null,
           React.DOM.tr null,
-            React.DOM.th null, "Date"
             React.DOM.th null, "Name"
             React.DOM.th null, "Calories"
             React.DOM.th null, "Actions"

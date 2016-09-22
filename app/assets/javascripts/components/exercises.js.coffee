@@ -1,6 +1,6 @@
 @Exercises = React.createClass
   getInitialState: ->
-    exercises: @props.data
+    exercises: @props.exercises
 
   getDefaultProps: ->
     exercises: []
@@ -8,7 +8,9 @@
   addExercise: (exercise) ->
     exercises = @state.exercises.slice()
     exercises.push exercise
+    @props.handleExerciseRefresh exercises
     @setState exercises: exercises
+
   render: ->
     React.DOM.div
       className: 'exercises'

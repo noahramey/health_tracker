@@ -32,7 +32,6 @@
 
   foodRow: ->
     React.DOM.tr null,
-      React.DOM.td null, dateFormat(@props.food.created_at)
       React.DOM.td null, @props.food.name
       React.DOM.td null, @props.food.calories
       React.DOM.td null,
@@ -49,7 +48,6 @@
 
   foodForm: ->
     React.DOM.tr null,
-      React.DOM.td null,  dateFormat(@props.food.created_at)
       React.DOM.td null,
         React.DOM.input
           className: 'form-control'
