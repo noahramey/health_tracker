@@ -10,8 +10,6 @@ class FoodsController < ApplicationController
     @food.user_id = current_user.id
     if @food.save
       render json: @food
-    else
-      render json: @food.errors, status: :unprocessable_entity
     end
   end
 
